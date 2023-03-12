@@ -1,0 +1,31 @@
+module MovieTicketBookingSystem {
+
+  struct Movie {
+    string movieID;
+    string movieName;
+    string area;
+    string time;
+    string date;
+
+    long bookingCapacity;
+  };
+
+  interface Admin {
+    boolean addMovieSlots(in string adminID, in Movie movie);
+    boolean addMovie(in string adminID,in Movie movie);
+    boolean removeMovieSlots(in string adminID, in string movieID, in string movieName);
+    string listMovieShowsAvailability(in string movieName);
+  };
+
+  interface Customer {
+    boolean bookMovieTickets(in string customerID, in string movieID, in string movieName, in long numberOfTickets);
+    string getBookingSchedule(in string customerID);
+    boolean cancelMovieTickets(in string customerID, in string movieID, in string movieName, in long numberOfTickets);
+  };
+  interface Server {
+  Admin getAdmin();
+  Customer getCustomer();
+   string processRequest(in string input);
+  };
+
+};
